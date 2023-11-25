@@ -12,6 +12,7 @@ const App = () => {
       text,
       important: false,
       complete: false,
+      category,
     };
     setTasks([newTask, ...tasks]);
   };
