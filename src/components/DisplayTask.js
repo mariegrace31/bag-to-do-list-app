@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { MdDelete } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
+import { MdDelete } from 'react-icons/md';
+import { CiEdit } from 'react-icons/ci';
+import PropTypes from 'prop-types';
+import { FaRegStar } from "react-icons/fa";
 
 const DisplayTasks = ({
   tasks,
@@ -11,15 +13,30 @@ const DisplayTasks = ({
   selectedCategory,
 }) => {
   const [editValue, setEditValue] = useState('');
+  const handleImportantClick = (taskId) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, important: !task.important } : task
+    );
+    setTasks([updatedTasks.find((task) => task.id === taskId), ...updatedTasks.filter((task) => task.id !== taskId)]);
+  };
+
+  const handleEdit = (taskId, text) => {
+    editTask(taskId, text);
+    setEditValue('');
+  };
+
+  const handleInputChange = (e) => {
+    setEditValue(e.target.value);
+  };
+
+  const handleEditStart = (taskId, text) => {
+    setEditValue(text);
+  };
+
   const filteredTasks = selectedCategory
     ? tasks.filter((task) => task.category === selectedCategory)
     : tasks;
-
-  const handleEdit = (task) => {
-    setEditValue(task.text);
-    editTask(task.id, editValue);
-    setEditValue('');
-  };
+;
 
   return (
     <ul>
@@ -30,9 +47,9 @@ const DisplayTasks = ({
               <input
                 type="text"
                 value={editValue}
-                onChange={(e) => setEditValue(e.target.value)}
+                onChange={handleInputChange}
               />
-              <button onClick={() => handleEdit(task)}>Save</button>
+              <button onClick={() => handleEdit(task.id, editValue)}>Save</button>
             </div>
           ) : (
             <div>
@@ -43,13 +60,17 @@ const DisplayTasks = ({
                 }}
                 onClick={() => toggleComplete(task.id)}
               >
-                {task.text}
+              <FaRegStar
+              onClick={() => handleImportantClick(task.id)}
+              style={{ color: task.important ? 'gold' : 'black', cursor: 'pointer' }}
+            />
+            {task.text}
               </span>
-              <button onClick={() => deleteTask(task.id)}><MdDelete /></button>
-              <button onClick={() => toggleImportant(task.id)}>
-                {task.important ? 'Unimportant' : 'Important'}
+              <button onClick={() => handleEditStart(task.id, task.text)}>
+                Edit
+                <CiEdit />
               </button>
-              <button onClick={() => setEditValue(task.id)}>Edit<CiEdit /></button>
+              <button onClick={() => deleteTask(task.id)}><MdDelete /></button>
               <input
                 type="checkbox"
                 checked={task.complete}
@@ -61,6 +82,15 @@ const DisplayTasks = ({
       ))}
     </ul>
   );
+};
+
+DisplayTasks.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  toggleImportant: PropTypes.func.isRequired,
+  toggleComplete: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
+  selectedCategory: PropTypes.string,
 };
 
 export default DisplayTasks;

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AddTask from './components/AddTask';
 import DisplayTasks from './components/DisplayTask';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // Add Task
-  const addTask = (text) => {
+  const addTask = (text, category) => {
     const newTask = {
       id: Date.now(),
       text,
@@ -17,13 +17,11 @@ const App = () => {
     setTasks([newTask, ...tasks]);
   };
 
-  // Delete Task
   const deleteTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
   };
 
-  // Toggle Important
   const toggleImportant = (taskId) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId ? { ...task, important: !task.important } : task
@@ -31,7 +29,6 @@ const App = () => {
     setTasks(updatedTasks);
   };
 
-  // Toggle Complete
   const toggleComplete = (taskId) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId ? { ...task, complete: !task.complete } : task
@@ -42,12 +39,13 @@ const App = () => {
   return (
     <div>
       <h1>To-Do List</h1>
-      <AddTask addTask={addTask} />
+      <AddTask addTask={addTask} setSelectedCategory={setSelectedCategory} />
       <DisplayTasks
         tasks={tasks}
         deleteTask={deleteTask}
         toggleImportant={toggleImportant}
         toggleComplete={toggleComplete}
+        selectedCategory={selectedCategory}
       />
     </div>
   );
