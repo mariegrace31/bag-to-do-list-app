@@ -8,51 +8,55 @@ const DisplayTasks = ({
   tasks,
   deleteTask,
   toggleComplete,
-  editTask,
-  selectedCategory,
+  toggleImportant,
   setTasks,
 }) => {
-  const [editValue, setEditValue] = useState('');
+  const [editValues, setEditValues] = useState({});
 
-  const handleImportantClick = (taskId) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, important: !task.important } : task
-    );
-    setTasks([
-      updatedTasks.find((task) => task.id === taskId),
-      ...updatedTasks.filter((task) => task.id !== taskId),
-    ]);
-  };
+  // const handleImportantClick = (taskId) => {
+  //   const updatedTasks = tasks.map((task) => (
+  //     task.id === taskId ? { ...task, important: !task.important } : task
+  //   ));
+  //   const sortedTasks = updatedTasks.sort((a, b) => {
+  //     if (a.important && !b.important) return -1;
+  //     if (!a.important && b.important) return 1;
+  //     return 0;
+  //   });
+
+  //   setTasks(sortedTasks);
+  // };
 
   const handleEdit = (taskId, text) => {
-    editTask(taskId, text);
-    setEditValue('');
+    const updatedEditValues = { ...editValues, [taskId]: text };
+    setEditValues(updatedEditValues);
+
+    const updatedTasks = tasks.map((task) => (
+      task.id === taskId ? { ...task, isEditing: true } : { ...task, isEditing: false }
+    ));
+    setTasks(updatedTasks);
   };
 
   const handleInputChange = (e) => {
-    setEditValue(e.target.value);
+    setEditValues(e.target.value);
   };
 
   const handleEditStart = (taskId, text) => {
-    setEditValue(text);
+    setEditValues(text);
   };
-
-  const filteredTasks = selectedCategory
-    ? tasks.filter((task) => task.category === selectedCategory)
-    : tasks;
 
   return (
     <ul>
-      {filteredTasks.map((task) => (
+      {tasks.map((task) => (
         <li key={task.id}>
-          {task.id === editValue ? (
+          {task.id === editValues ? (
             <div>
               <input
                 type="text"
-                value={editValue}
+                value={editValues}
                 onChange={handleInputChange}
+                aria-labelledby="taskInput"
               />
-              <button type="button" onClick={() => handleEdit(task.id, editValue)}>
+              <button type="button" onClick={() => handleEdit(task.id, editValues)}>
                 Save
               </button>
             </div>
@@ -64,9 +68,9 @@ const DisplayTasks = ({
                   fontWeight: task.important ? 'bold' : 'normal',
                   cursor: 'pointer',
                 }}
-                onClick={() => toggleComplete(task.id)}
+                onClick={() => !task.isEditing && toggleComplete(task.id)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
+                  if (!task.isEditing && e.key === 'Enter') {
                     toggleComplete(task.id);
                   }
                 }}
@@ -76,7 +80,7 @@ const DisplayTasks = ({
                 aria-label={`Task: ${task.text}`}
               >
                 <FaRegStar
-                  onClick={() => handleImportantClick(task.id)}
+                  onClick={() => toggleImportant(task.id)}
                   style={{
                     color: task.important ? 'gold' : 'black',
                     cursor: 'pointer',
@@ -89,6 +93,7 @@ const DisplayTasks = ({
                 <CiEdit />
               </button>
               <button type="button" onClick={() => deleteTask(task.id)}>
+                {' '}
                 <MdDelete />
               </button>
               <input
@@ -110,15 +115,13 @@ DisplayTasks.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-      category: PropTypes.string,
       complete: PropTypes.bool,
       important: PropTypes.bool,
-    })
+    }),
   ).isRequired,
   deleteTask: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
-  editTask: PropTypes.func.isRequired,
-  selectedCategory: PropTypes.string,
+  toggleImportant: PropTypes.func.isRequired,
   setTasks: PropTypes.func.isRequired,
 };
 
