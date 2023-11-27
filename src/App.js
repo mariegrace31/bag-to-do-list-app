@@ -36,15 +36,23 @@ const App = () => {
     setTasks(updatedTasks);
   };
 
+  const editTask = (taskId, newText) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, text: newText } : task
+    );
+    setTasks(updatedTasks);
+  };
+
   return (
     <div>
-      <h1>To-Do List</h1>
+      <h1>My To-Do List</h1>
       <AddTask addTask={addTask} setSelectedCategory={setSelectedCategory} />
       <DisplayTasks
         tasks={tasks}
         deleteTask={deleteTask}
-        toggleImportant={toggleImportant}
         toggleComplete={toggleComplete}
+        toggleImportant={toggleImportant}
+        editTask={editTask}
         selectedCategory={selectedCategory}
       />
     </div>

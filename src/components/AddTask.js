@@ -23,11 +23,10 @@ const AddTask = ({ addTask, categories }) => {
 
   return (
     <div>
-      <h1>
+      <div className="flex gap-1 items-center">
         <IoMdAdd />
-        {' '}
-        New Task
-      </h1>
+        <h1>New Task</h1>
+      </div>
       <input
         type="text"
         value={inputValue}
