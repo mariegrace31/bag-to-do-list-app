@@ -52,7 +52,7 @@ const DisplayTasks = ({
                 value={editValue}
                 onChange={handleInputChange}
               />
-              <button onClick={() => handleEdit(task.id, editValue)}>
+              <button type="button" onClick={() => handleEdit(task.id, editValue)}>
                 Save
               </button>
             </div>
@@ -62,8 +62,18 @@ const DisplayTasks = ({
                 style={{
                   textDecoration: task.complete ? 'line-through' : 'none',
                   fontWeight: task.important ? 'bold' : 'normal',
+                  cursor: 'pointer',
                 }}
                 onClick={() => toggleComplete(task.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    toggleComplete(task.id);
+                  }
+                }}
+                role="checkbox"
+                aria-checked={task.complete}
+                tabIndex={0}
+                aria-label={`Task: ${task.text}`}
               >
                 <FaRegStar
                   onClick={() => handleImportantClick(task.id)}
@@ -85,6 +95,7 @@ const DisplayTasks = ({
                 type="checkbox"
                 checked={task.complete}
                 onChange={() => toggleComplete(task.id)}
+                aria-label={`Complete task "${task.text}"`}
               />
             </div>
           )}
@@ -95,7 +106,15 @@ const DisplayTasks = ({
 };
 
 DisplayTasks.propTypes = {
-  tasks: PropTypes.array.isRequired,
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      category: PropTypes.string,
+      complete: PropTypes.bool,
+      important: PropTypes.bool,
+    })
+  ).isRequired,
   deleteTask: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
   editTask: PropTypes.func.isRequired,
