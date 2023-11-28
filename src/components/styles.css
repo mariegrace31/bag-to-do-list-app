@@ -238,7 +238,7 @@
   }
 }
 
-@media screen and (min-width: 469px) and (max-width:1024px) {
+@media screen and (min-width: 469px) and (max-width: 1024px) {
   .btns {
     gap: 10px;
     margin-left: 19px;
