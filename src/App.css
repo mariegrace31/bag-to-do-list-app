@@ -19,3 +19,13 @@
   border-bottom: 2px solid #0084ff;
   margin-top: -18px;
 }
+
+@media screen and (max-width: 468px) {
+  .app-title {
+    font-size: 25px;
+  }
+
+  .app-underline {
+    width: 13%;
+  }
+}

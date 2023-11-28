@@ -164,3 +164,99 @@
   border-radius: 10px;
   background-color: #0084ff;
 }
+
+@media screen and (max-width: 468px) {
+  .add-task-header h1,
+  .plus-icon {
+    font-size: 20px;
+  }
+
+  .add-task-container {
+    gap: 8px;
+    padding: 8px;
+    width: 95%;
+    margin: 35px auto 0 auto;
+  }
+
+  .add-task-container input {
+    width: 52%;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .Add-btn {
+    padding: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .tasks-list {
+    margin-top: 40px;
+  }
+
+  .tasks-list li {
+    border-radius: 15px;
+    width: 100%;
+  }
+
+  .task-item {
+    gap: 5px;
+    padding: 3px;
+  }
+
+  .box {
+    font-size: 18px;
+    width: 50%;
+  }
+
+  .star {
+    font-size: 18px;
+    width: 10%;
+  }
+
+  .btns {
+    gap: 10px;
+    margin-left: 9px;
+    width: 10%;
+  }
+
+  .btn-edit {
+    padding: 7px;
+    font-size: 13px;
+    width: 40px;
+  }
+
+  .btn-delete {
+    font-size: 20px;
+    width: 35px;
+  }
+
+  .task-edit {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 469px) and (max-width:1024px) {
+  .btns {
+    gap: 10px;
+    margin-left: 19px;
+  }
+
+  .box {
+    font-size: 18px;
+    width: 35%;
+  }
+
+  .star {
+    font-size: 24px;
+    width: 20%;
+  }
+
+  .btn-edit {
+    padding: 8px;
+    align-items: center;
+    font-size: 17px;
+  }
+}
