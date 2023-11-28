@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IoMdAdd } from 'react-icons/io';
+import { FiPlusCircle } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 
 import './styles.css';
@@ -19,18 +19,18 @@ const AddTask = ({ addTask }) => {
   };
 
   return (
-    <div>
+    <div className="add-task-container">
       <div className="add-task-header">
-        <IoMdAdd className="plus-icon" />
+        <FiPlusCircle className="plus-icon" />
         <h1>New Task</h1>
       </div>
       <input
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        placeholder="Add a new task..."
+        placeholder="Add a new task here..."
       />
-      <button type="button" onClick={handleAddTask}>Add Task</button>
+      <button className="Add-btn" type="button" onClick={handleAddTask}>Add Task</button>
     </div>
   );
 };

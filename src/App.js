@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddTask from './components/AddTask';
 import DisplayTasks from './components/DisplayTask';
 
@@ -9,6 +9,13 @@ const App = () => {
     text: '',
   });
 
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
   const addTask = (text) => {
     const newTask = {
       id: tasks.length + 1,
@@ -16,7 +23,10 @@ const App = () => {
       important: false,
       complete: false,
     };
-    setTasks([newTask, ...tasks]);
+    const newTasks = [newTask, ...tasks];
+
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
+    setTasks(newTasks);
   };
 
   const deleteTask = (taskId) => {
@@ -57,6 +67,7 @@ const App = () => {
   return (
     <div className="app-container">
       <h1 className="app-title">My To-Do List</h1>
+      <hr className="app-underline" />
       <AddTask addTask={addTask} />
       <DisplayTasks
         tasks={tasks}

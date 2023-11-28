@@ -37,12 +37,13 @@ const DisplayTasks = ({
           {task.id === editingTask.id ? (
             <div>
               <input
+                className="task-edit"
                 type="text"
                 value={editedText}
                 onChange={(e) => setEditedText(e.target.value)}
                 aria-labelledby="taskInput"
               />
-              <button type="button" onClick={() => handleEdit(task.id)}>
+              <button className="btn-save" type="button" onClick={() => handleEdit(task.id)}>
                 Save
               </button>
             </div>
@@ -66,6 +67,7 @@ const DisplayTasks = ({
                   }
                 }}
                 role="checkbox"
+                className="box"
                 aria-checked={task.complete}
                 tabIndex={0}
                 aria-label={`Task: ${task.text}`}
@@ -73,18 +75,19 @@ const DisplayTasks = ({
                 {task.text}
               </span>
               <FaStar
+                className="star"
                 onClick={() => toggleImportant(task.id)}
                 style={{
-                  color: task.important ? 'gold' : 'black',
+                  color: task.important ? 'gold' : 'gray',
                   cursor: 'pointer',
                 }}
               />
-              <div>
-                <button type="button" onClick={() => handleEditStart(task.id, task.text)}>
+              <div className="btns">
+                <button className="btn-edit" type="button" onClick={() => handleEditStart(task.id, task.text)}>
                   Edit
                   <CiEdit />
                 </button>
-                <button type="button" onClick={() => deleteTask(task.id)}>
+                <button className="btn-delete" type="button" onClick={() => deleteTask(task.id)}>
                   {' '}
                   <MdDelete />
                 </button>
