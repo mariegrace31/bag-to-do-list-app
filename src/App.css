@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.app-container {
+  padding: 20px;
+}
+
+/* HEADER */
+.app-title {
+  text-align: center;
+}
