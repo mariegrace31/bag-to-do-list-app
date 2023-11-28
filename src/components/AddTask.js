@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import PropTypes from 'prop-types';
 
+import './styles.css';
+
 const AddTask = ({ addTask }) => {
   const [inputValue, setInputValue] = useState('');
 
@@ -18,8 +20,8 @@ const AddTask = ({ addTask }) => {
 
   return (
     <div>
-      <div className="flex gap-1 items-center">
-        <IoMdAdd />
+      <div className="add-task-header">
+        <IoMdAdd className="plus-icon" />
         <h1>New Task</h1>
       </div>
       <input

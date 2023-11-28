@@ -1,0 +1,23 @@
+.add-task-header {
+  display: flex;
+  align-items: center;
+  /* padding: 0 20px; */
+  gap: 10px;
+}
+
+.plus-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.tasks-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 10px;
+}
