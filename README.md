@@ -53,7 +53,7 @@ BAG To-Do List app showcases a list of tasks that have to be completed.
 <!-- LIVE DEMO -->
 ## <b>Live Demo 🚀</b><a name="live-demo"></a>
 
-If you want to check this project online, please click 😊 [here](https://mariegrace31.github.io/Meal_Gallery/dist/).
+If you want to check this project online, please click 😊 [here](https://bag-to-do-list.netlify.app/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
