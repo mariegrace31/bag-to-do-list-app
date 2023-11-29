@@ -99,7 +99,7 @@ Install all dependencies:
 ```sh
     npm install
 ```
-Run the following code to fixed possible JavaScript linter errors:
+Run the following code to fix possible JavaScript linter errors:
 ```
 npx eslint . --fix
 ```
@@ -150,7 +150,7 @@ Thank you for taking the time to explore my GitHub project! Your support means a
 <!-- ACKNOWLEDGEMENTS -->
 ## **Acknowledgments 🙏**<a name="acknowledgements"></a>
 
-We would like to express our sincere gratitude to BAG and thank you too for taking your time to explore this project.
+I would like to express my sincere gratitude to [BAG](https://www.bag.work/) and thank you too for taking the time to explore this project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
