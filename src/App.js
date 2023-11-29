@@ -32,6 +32,7 @@ const App = () => {
   const deleteTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
   const toggleImportant = (taskId) => {
@@ -48,6 +49,7 @@ const App = () => {
     });
 
     setTasks(sortedTasks);
+    localStorage.setItem('tasks', JSON.stringify(sortedTasks));
   };
 
   const toggleComplete = (taskId) => {
@@ -62,6 +64,7 @@ const App = () => {
     });
 
     setTasks(sortedTasks);
+    localStorage.setItem('tasks', JSON.stringify(sortedTasks));
   };
 
   return (
