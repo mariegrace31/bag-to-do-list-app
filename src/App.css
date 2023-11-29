@@ -6,11 +6,26 @@
   font-family: "Roboto", sans-serif;
 }
 
-.app-container {
-  padding: 20px;
-}
-
 /* HEADER */
 .app-title {
   text-align: center;
+  color: #0084ff;
+  font-size: 40px;
+  padding: 10px;
+}
+
+.app-underline {
+  width: 7%;
+  border-bottom: 2px solid #0084ff;
+  margin-top: -18px;
+}
+
+@media screen and (max-width: 468px) {
+  .app-title {
+    font-size: 25px;
+  }
+
+  .app-underline {
+    width: 13%;
+  }
 }

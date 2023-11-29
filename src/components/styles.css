@@ -1,22 +1,262 @@
 .add-task-header {
   display: flex;
   align-items: center;
+  text-align: center;
   gap: 10px;
 }
 
+.add-task-header h1 {
+  color: #0084ff;
+  cursor: default;
+  font-size: 30px;
+}
+
 .plus-icon {
-  font-size: 20px;
-  cursor: pointer;
+  font-size: 26px;
+  cursor: default;
+  color: #0084ff;
 }
 
 .tasks-list {
   list-style-type: none;
   padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.tasks-list li {
+  border-radius: 15px;
+  width: 72%;
 }
 
 .task-item {
   display: flex;
-  gap: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  gap: 60px;
+  padding: 10px;
+  border-radius: 15px;
   align-items: center;
-  margin-bottom: 10px;
+}
+
+.tasks-list li:nth-child(odd) {
+  background-color: #e7f1f8;
+  border: 2px solid #c2dffc;
+}
+
+.tasks-list li:nth-child(even) {
+  background-color: #fff;
+  border: 2px solid #c2dffc;
+}
+
+.add-task-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: #dfedf8;
+  padding: 15px;
+  width: 70%;
+  border-radius: 10px;
+  margin: 50px auto 0 auto;
+}
+
+.add-task-container input {
+  width: 55%;
+  font-size: 18px;
+  border: 2px solid #d5e8f7;
+  padding: 15px;
+  border-radius: 10px;
+  transition: border 0.55s ease-in-out;
+}
+
+.add-task-container input::placeholder {
+  font-style: italic;
+  color: #9c9c9c;
+  font-size: 15px;
+}
+
+.add-task-container input:focus {
+  border: 2px solid #76b6f1;
+  outline: none;
+}
+
+.Add-btn {
+  padding: 13px;
+  border: none;
+  background-color: #0084ff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.Add-btn:hover {
+  background-color: #fff;
+  color: #0084ff;
+}
+
+.box {
+  color: #0084ff;
+  font-size: 24px;
+  width: 20%;
+}
+
+.star {
+  font-size: 24px;
+  width: 20%;
+}
+
+.btns {
+  display: flex;
+  gap: 25px;
+  margin-left: 260px;
+}
+
+.btn-edit {
+  color: #0084ff;
+  border-radius: 8px;
+  padding: 8px;
+  align-items: center;
+  border: 1px solid #0084ff;
+  font-size: 19px;
+  background-color: #fff;
+}
+
+.btn-edit:hover {
+  color: #fff;
+  background-color: #0084ff;
+}
+
+.btn-delete {
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  font-size: 23px;
+  align-items: center;
+  border-radius: 8px;
+  width: 40px;
+}
+
+.task-edit {
+  padding: 15px;
+  background-color: #badbf7;
+  border: none;
+  width: 40%;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.btn-save {
+  margin: 20px;
+  padding: 8px;
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  background-color: #0084ff;
+}
+
+@media screen and (max-width: 468px) {
+  .add-task-header h1,
+  .plus-icon {
+    font-size: 20px;
+  }
+
+  .add-task-container {
+    gap: 8px;
+    padding: 8px;
+    width: 95%;
+    margin: 35px auto 0 auto;
+  }
+
+  .add-task-container input {
+    width: 52%;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .Add-btn {
+    padding: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .tasks-list {
+    margin-top: 40px;
+  }
+
+  .tasks-list li {
+    border-radius: 15px;
+    width: 100%;
+  }
+
+  .task-item {
+    gap: 5px;
+    padding: 3px;
+  }
+
+  .box {
+    font-size: 18px;
+    width: 50%;
+  }
+
+  .star {
+    font-size: 18px;
+    width: 10%;
+  }
+
+  .btns {
+    gap: 10px;
+    margin-left: 9px;
+    width: 10%;
+  }
+
+  .btn-edit {
+    padding: 7px;
+    font-size: 13px;
+    width: 40px;
+  }
+
+  .btn-delete {
+    font-size: 20px;
+    width: 35px;
+  }
+
+  .task-edit {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 469px) and (max-width: 1024px) {
+  .btns {
+    gap: 10px;
+    margin-left: 19px;
+  }
+
+  .box {
+    font-size: 18px;
+    width: 35%;
+  }
+
+  .star {
+    font-size: 24px;
+    width: 20%;
+  }
+
+  .btn-edit {
+    padding: 8px;
+    align-items: center;
+    font-size: 17px;
+  }
 }
